@@ -33,7 +33,7 @@
                                     <div class="col-md-6">
                                         <div class="row">
                                             <div class="col-5">
-                                                <img src="{{ asset('uploads/'.$cart->product->media[0]->file) }}" style="width:100px">
+                                                <img src="{{ asset('uploads/'.$cart->product->media->file) }}" style="width:100px">
                                             </div>
                                             <div class="col" style="padding-top:10px">
                                                 <b><a href="{{ route('view.product',$cart->product->slug) }}">{{ $cart->product->name }}</a></b> <br>

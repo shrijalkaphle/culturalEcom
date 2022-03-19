@@ -21,7 +21,7 @@
                 @foreach ($history->items as $item)
                     <div class="row">
                         <div class="col-md-2 text-center">
-                            <img src="{{ asset('uploads/'.$item->product->media[0]->file) }}" class="w-100">
+                            <img src="{{ asset('uploads/'.$item->product->media->file) }}" class="w-100">
                         </div>
                         <div class="col-md-6">
                             <h5>{{$item->product->name}}</h5>
