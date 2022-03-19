@@ -22,6 +22,6 @@ class Admin
             else
                 return redirect()->back();
         }
-        return redirect()->route('page.login');
+        return redirect()->route('login');
     }
 }

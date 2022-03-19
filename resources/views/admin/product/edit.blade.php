@@ -65,10 +65,14 @@
                                 <textarea name="description" id="description" required placeholder="Product Description" class="form-control" cols="30" rows="10">{{ $product->description }}</textarea>
                             </div>
                             
-                            <div class="form-group">
-                                <label for="image">Product Image</label>
-                                <input type="file" name="image[]" id="image" class="form-control" multiple>
-                                {{ $product->media }}
+                            <div class="form-group row">
+                                <div class="col-md-6">
+                                    <label for="image">Product Image</label>
+                                    <input type="file" name="image" id="image" class="form-control">
+                                </div>
+                                <div class="col-md-6">
+                                    <img src="{{ asset('uploads/'.$product->media->file) }}" class="w-100">
+                                </div>
                             </div>
                             <button class="btn btn-primary text-capitalize">update</button>
                         </form>

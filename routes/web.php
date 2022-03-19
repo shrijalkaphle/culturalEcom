@@ -19,6 +19,10 @@ Route::get('/',[PageController::class, 'landingPage'])->name('landing');
 Route::get('register', [PageController::class, 'registerPage'])->name('page.register');
 Route::get('login', [PageController::class, 'loginPage'])->name('login');
 
+Route::get('contact', [PageController::class, 'contactPage'])->name('contact');
+
+Route::get('category/{name}', [PageController::class, 'categoryProductPage'])->name('category');
+
 Route::post('create_user', [AuthController::class, 'createUser'])->name('user.register');
 Route::post('check_user', [AuthController::class, 'checkUser'])->name('user.login');
 
@@ -58,9 +62,6 @@ Route::group(['middleware' => 'admin'], function() {
             'customer'      =>  admin\CustomerController::class,
         ]);
     });
-});
 
-
-Route::get('redirect', function(){
-    return view('redirecting');
+    Route::get('order/list', [OrderController::class, 'viewAllOrder'])->name('order');
 });

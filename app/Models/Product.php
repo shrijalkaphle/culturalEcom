@@ -27,6 +27,6 @@ class Product extends Model
 
     public function media()
     {
-        return $this->hasMany(ProductMedia::class);
+        return $this->hasOne(ProductMedia::class);
     }
 }

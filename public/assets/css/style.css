@@ -1,5 +1,5 @@
 .navbar {
-    height: 100px !important;
+    height: 80px !important;
     transition: 0.5s;
 }
 
@@ -20,9 +20,51 @@
     font-weight: bold;
 }
 
-.page-footer {
-    background: black;
+.foot {
+    background: black !important;
     color: white;
+}
+
+.header {
+    height: calc(100vh - 80px);
+    overflow: hidden;
+    position: relative;
+}
+.bg-slider {
+    height: calc(100vh - 80px);
+    overflow: hidden;
+}
+.splide__slide img {
+    max-height: calc(100vh - 80px);
+    min-width: 100%;
+    object-fit: cover;
+    object-position: center center;
+}
+.bg-text {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.3);
+    color: whitesmoke;
+    font-weight: bold;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    z-index: 2;
+}
+.flex-child {
+    border-radius: 0;
+    flex: 1 0 12%;
+    height: 100px;
+    background-color: blue;
+    cursor: pointer;
+}
+.flex-child:hover {
+    transform: scale(1.05);
+    z-index: 999;
 }
 
 .login-div {
@@ -64,9 +106,7 @@ input[type=number] {
 }
 
 .search-div {
-    padding-top: 50px;
     width: 50%;
-    margin: auto
 }
 
 .search-input {

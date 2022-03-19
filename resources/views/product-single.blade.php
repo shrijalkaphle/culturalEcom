@@ -24,17 +24,7 @@
     @endif
     <div class="row">
         <div class="col-md-5" style="text-align:center">
-            <div class="splide">
-                <div class="splide__track">
-                    <ul class="splide__list">
-                        @foreach ($product->media as $media)
-                            <li class="splide__slide">
-                                <img src="{{ asset('uploads/'.$media->file) }}" style="width:80%">
-                            </li>
-                        @endforeach
-                    </ul>
-                </div>
-            </div>
+            <img src="{{ asset('uploads/'.$product->media->file) }}" style="width:80%">
         </div>
         <div class="col-md-7">
             <div class="card card-body shadow-lg">
@@ -53,7 +43,7 @@
                     <input type="number" name="qty" id="2" value="1" min="1" max="5" class="text-center" style="border:0px; "/>
                     <button type="button" id="add2" class="add btn font-weight-bold">+</button>
                     
-                    <button class="btn btn-success d-block addCart mt-3">Add to Cart</button>
+                    <button class="btn btn-success d-block addCart mt-3" @if($product->count == 0) disabled @endif>Add to Cart</button>
                 </form>
             </div>
         </div>
@@ -69,18 +59,6 @@
 
 @section('script')
 <script>
-    var splide = new Splide( '.splide', {
-        type            : 'loop',
-        perPage         : 1,
-        perMove         : 1,
-        autoplay        : true,
-        interval        : 3000,
-        pauseOnHover    : true,
-        arrows          : true,
-        pagination      : true,
-            } );
-        splide.mount();
-
     $('.add').click(function () {
 		if ($(this).prev().val() < 5) {
     	    $(this).prev().val(+$(this).prev().val() + 1);

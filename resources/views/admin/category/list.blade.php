@@ -60,7 +60,9 @@
                             </tbody>
                         </table>
                     </div>
-                    
+                    <div class="d-block text-center card-footer">
+                        {{$categories->links()}}
+                    </div>
                 </div>
             </div>
         </div>

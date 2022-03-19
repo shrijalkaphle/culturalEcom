@@ -45,37 +45,17 @@ class ProductController extends Controller
         $input['slug'] = $this->generate_slug($input['name']);
         $product = Product::create($input);
         $input['product_id'] = $product->id;
-        if($images = $request->file('image'))
+        if($image = $request->file('image'))
         {
-            foreach($images as $image)
-            {
-                $new_name = 'product'."-".uniqid()."." . $image->getClientOriginalExtension();
-                $new_path = 'product' . "/" . $new_name;
-                Storage::disk('public')->putFileAs('product', $image, $new_name);
-                $input['file'] = $new_path;
-                ProductMedia::create($input);
-            }
+            $new_name = 'product'."-".uniqid()."." . $image->getClientOriginalExtension();
+            $new_path = 'product' . "/" . $new_name;
+            Storage::disk('public')->putFileAs('product', $image, $new_name);
+            $input['file'] = $new_path;
+            ProductMedia::create($input);
         }
         return redirect()->route('products.index')->with('success', 'New Product added!');
     }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+    
     public function edit($id)
     {
         $product = Product::findorfail($id);
@@ -92,10 +72,20 @@ class ProductController extends Controller
      */
     public function update(Request $request, $id)
     {
-        
         $product = Product::findorfail($id);
-        $product->update($request->all());
+        if($image = $request->file('image'))
+        {
+            $media = ProductMedia::where(['product_id' => $id])->first();
+            
+            Storage::disk('public')->delete($media->file);
 
+            $new_name = 'product'."-".uniqid()."." . $image->getClientOriginalExtension();
+            $new_path = 'product' . "/" . $new_name;
+            Storage::disk('public')->putFileAs('product', $image, $new_name);
+            $input['file'] = $new_path;
+            $media->update($input);
+        }
+        $product->update($request->all());
         return redirect()->route('products.index')->with('success', 'Product detail updated!');
     }
 

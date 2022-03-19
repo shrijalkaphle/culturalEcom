@@ -87,6 +87,9 @@ class CartController extends Controller
                 'qty'           =>  $cart->qty
             ]);
 
+            // update stock remaning
+            $newStock = $cart->product->count - $cart->qty;
+            $cart->product->update(['count' => $newStock]);
             $cart->delete();
         }
         return view('redirecting');

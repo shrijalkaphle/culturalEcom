@@ -1,5 +1,5 @@
 @extends('layout.frontend')
-@section('title', env('APP_NAME'))
+@section('title', 'Product in ' . strtoupper($category->name))
 
 @section('body')
 <div class="header">
@@ -20,7 +20,7 @@
     <div class="bg-text">
         <div class="search-div">
             <h1>Culture at your DoorStep!!</h1>
-            <form action="search" method="post" id="search-form" class="mt-5">
+            <form action="search" method="post" class="mt-5">
                 <input type="search" name="search" id="search" class="search-input" placeholder="Search">
             </form>
         </div>
@@ -42,7 +42,12 @@
 </div>
 
 <div class="container mt-5">
+    @if($products->isEmpty())
+    <h4 class="mb-5">No Product Available!!</h4>
+    @else
     <h4>Products</h4>
+    @endif
+    
     <div class="row">
         @foreach ($products as $product)
             <div class="col-md-3 book-card">
@@ -95,47 +100,4 @@
                 } );
             splide.mount();
     </script>
-    <style>
-        .header {
-            height: calc(100vh - 80px);
-            overflow: hidden;
-            position: relative;
-        }
-        .bg-slider {
-            height: calc(100vh - 80px);
-            overflow: hidden;
-        }
-        .splide__slide img {
-            max-height: calc(100vh - 80px);
-            min-width: 100%;
-            object-fit: cover;
-            object-position: center center;
-        }
-        .bg-text {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            background: rgba(0, 0, 0, 0.3);
-            color: whitesmoke;
-            font-weight: bold;
-            position: absolute;
-            top: 0;
-            left: 0;
-            bottom: 0;
-            right: 0;
-            z-index: 2;
-        }
-        .flex-child {
-            border-radius: 0;
-            flex: 1 0 12%;
-            height: 100px;
-            background-color: blue;
-            cursor: pointer;
-        }
-        .flex-child:hover {
-            transform: scale(1.05);
-            z-index: 999;
-        }
-    </style>
 @endsection

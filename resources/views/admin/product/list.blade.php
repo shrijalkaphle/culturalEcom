@@ -66,7 +66,9 @@
                             </tbody>
                         </table>
                     </div>
-                    
+                    <div class="d-block text-center card-footer">
+                        {{$products->links()}}
+                    </div>
                 </div>
             </div>
         </div>

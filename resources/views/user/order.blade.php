@@ -9,8 +9,8 @@
         
         <div class="card card-body border">
             <div class="row">
-                <div class="col">
-                    id?
+                <div class="col font-weight-bold">
+                    ORDER #{{$history->id}}
                 </div>
                 <div class="col text-right">
                     <a href="{{ $history->recept_url }}" target="_blank" rel="noopener noreferrer">View Recipt</a>
@@ -29,17 +29,17 @@
                             <h6 class="text-primary">${{$item->product->cost}}</h6>
                         </div>
                         <div class="col-md-2 text-center">
-                            qty
+                            {{$item->qty}}
                         </div>
-                        <div class="col-md-2 text-right">
-                            total
+                        <div class="col-md-2 text-right font-weight-bold">
+                            ${{ $item->qty * $item->product->cost }}
                         </div>
                     </div>
                     <hr>
                 @endforeach
             </div>
         </div>
-
+        <hr class="my-3">
         @endforeach
     </div>
 @endsection

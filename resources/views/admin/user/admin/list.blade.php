@@ -70,7 +70,9 @@
                             </tbody>
                         </table>
                     </div>
-                    
+                    <div class="d-block text-center card-footer">
+                        {{$users->links()}}
+                    </div>
                 </div>
             </div>
         </div>

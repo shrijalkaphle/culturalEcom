@@ -44,4 +44,19 @@ class PageController extends Controller
         return view('admin.change-password');
     }
 
+    public function contactPage()
+    {
+        return view('contact');
+    }
+
+    public function categoryProductPage(String $name)
+    {
+        $sliders = HeroSlider::all();
+        $categories = Category::all();
+        $category = Category::where(['name' => $name])->first();
+        $products = Product::where(['category_id' => $category->id])->get();
+
+        return view('category',compact('sliders','categories','products','category'));
+    }
+
 }

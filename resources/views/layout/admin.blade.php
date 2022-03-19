@@ -35,7 +35,7 @@
     <div class="app-container app-theme-white body-tabs-shadow fixed-sidebar fixed-header">
         <div class="app-header header-shadow">
             <div class="app-header__logo">
-                <a href="{{ route('landing') }}"><img src="/uploads/" style="height:23px"></a>
+                <a href="{{ route('landing') }}" class="font-weight-bold text-dark text-decoration-none" style="font-size: 22px">{{ env('APP_NAME') }}</a>
                 <div class="header__pane ml-auto">
                     <div>
                         <button type="button" class="hamburger close-sidebar-btn hamburger--elastic" data-class="closed-sidebar">
@@ -161,6 +161,10 @@
                             <li> <a href="{{ route('products.index') }}" id="product">
                                 <i class="metismenu-icon material-icons-outlined"> inventory_2 </i>
                                 Products
+                            </a> </li>
+                            <li> <a href="{{ route('order') }}" id="order">
+                                <i class="metismenu-icon material-icons-outlined"> local_shipping </i>
+                                Orders
                             </a> </li>
                         </ul>
                     </div>
