@@ -1,3 +1,4 @@
+@yield('stripe')
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -11,7 +12,7 @@
     <title>@yield('title')</title>
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-transparent sticky-top" id="navbar">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top" id="navbar">
         <div class="container">
             <a class="navbar-brand" href="#">
                 <div style="height:60px; width:60px">
@@ -56,7 +57,7 @@
                             </div>
                         </li>
                     @else
-                        <li class="nav-item"> <a class="nav-link" href="{{ route('page.login') }}">Login</a> </li>
+                        <li class="nav-item"> <a class="nav-link" href="{{ route('login') }}">Login</a> </li>
                         <li class="nav-item"> <a class="nav-link" href="{{ route('page.register') }}">Register</a> </li>
                     @endif
                 </ul>

@@ -4,15 +4,43 @@
 
 @section('main-content')
     <div class="card card-body shadow-lg">
-        <div class="table-responsive">
-            <table class="table ">
-                <thead>
-                    <th class="text-center">Order ID</th>
-                    <th class="text-center">Order Placed Date</th>
-                    <th class="text-center">Status</th>
-                </thead>
-            </table>
+        <h4>Order History</h4>
+        @foreach (auth()->user()->orderHistory as $history)
+        
+        <div class="card card-body border">
+            <div class="row">
+                <div class="col">
+                    id?
+                </div>
+                <div class="col text-right">
+                    <a href="{{ $history->recept_url }}" target="_blank" rel="noopener noreferrer">View Recipt</a>
+                </div>
+            </div>
+            <hr>
+            <div>
+                @foreach ($history->items as $item)
+                    <div class="row">
+                        <div class="col-md-2 text-center">
+                            <img src="{{ asset('uploads/'.$item->product->media[0]->file) }}" class="w-100">
+                        </div>
+                        <div class="col-md-6">
+                            <h5>{{$item->product->name}}</h5>
+                            <small class="d-block">{{$item->product->nationality}}</small>
+                            <h6 class="text-primary">${{$item->product->cost}}</h6>
+                        </div>
+                        <div class="col-md-2 text-center">
+                            qty
+                        </div>
+                        <div class="col-md-2 text-right">
+                            total
+                        </div>
+                    </div>
+                    <hr>
+                @endforeach
+            </div>
         </div>
+
+        @endforeach
     </div>
 @endsection
 

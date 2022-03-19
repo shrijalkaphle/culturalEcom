@@ -13,11 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('order_histories', function (Blueprint $table) {
+        Schema::create('payments', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('payment_id')->references('id')->on('payments')->onDelete('cascade');
-            $table->foreignId('product_id')->references('id')->on('products')->onDelete('cascade');
-            $table->integer('qty')->default(1);
+            $table->foreignId('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->string('paymentIntent_id');
+            $table->longText('recept_url');
             $table->timestamps();
         });
     }
@@ -29,6 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('order_histories');
+        Schema::dropIfExists('payments');
     }
 };

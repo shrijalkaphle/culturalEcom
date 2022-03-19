@@ -23,6 +23,7 @@ class DatabaseSeeder extends Seeder
 
         \App\Models\User::insert([
             ['name'=>'admin','role_id'=>'1','email'=>'admin@gmail.com','number'=>'1234567890','email_verified_at'=>Carbon::now(),'password'=>Hash::make('admin')],
+            ['name'=>'shrijal','role_id'=>'2','email'=>'shrijal@gmail.com','number'=>'1234567890','email_verified_at'=>Carbon::now(),'password'=>Hash::make('shrijal')],
         ]);
 
         \App\Models\Category::insert([

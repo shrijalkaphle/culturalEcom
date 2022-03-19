@@ -98,7 +98,7 @@
 </div>
     <script>
         $('#users').addClass('mm-active')
-        $('#admin').addClass('mm-active')
+        $('#customer').addClass('mm-active')
         $(document).on("click", ".delete-toggle", function() {
             var id = $(this).data('id')
             var action = 'admin/'+id

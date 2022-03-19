@@ -2,7 +2,7 @@
 @section('title', 'Cart')
 
 @section('body')
-{{ $subtotal = null }}
+<?php $subtotal = 0 ?>
 <div class="container cart-container mt-5">
     @if(Session::has('success'))
     <div class="alert alert-success alert-dismissible fade show my-5" role="alert" style="text-transform: capitalize">
@@ -55,7 +55,7 @@
                             </div>
                             <?php $subtotal = $subtotal + ($cart->qty * $cart->product->cost) ?>
                             <div class="col-2 text-right">
-                                <button class="btn btn-text text-danger" type="button" data-toggle="modal" data-target="#deleteModel" class="delete-button" data-id="{{ $cart->id }}">
+                                <button class="btn btn-text text-danger delete-toggle" type="button" data-toggle="modal" data-target="#deleteCartItem" data-id="{{ $cart->id }}">
                                     <i class="fas fa-trash"></i>    
                                 </button>
                             </div>
@@ -70,39 +70,16 @@
                     <h5>Order Summery</h5>
                     <div class="row">
                         <div class="col">
-                            Subtotal
-                        </div>
-                        <div class="col" style="text-align:right">
-                            ${{$subtotal}}
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col">
-                            Shipping + Handling
-                        </div>
-                        <div class="col-3" style="text-align:right">
-                            $10.00
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col">
-                            Sales Tax
-                        </div>
-                        <div class="col-3" style="text-align:right">
-                            $5.00
-                        </div>
-                    </div>
-                    <hr>
-                    <div class="row">
-                        <div class="col">
                             <b>Total</b>
                         </div>
                         <div class="col" style="text-align:right">
-                            <b>${{$subtotal + 5 + 10}} </b>
+                            <b>${{$subtotal}} </b>
                         </div>
                     </div>
                     <hr>
-                    <form action="" method="post">
+                    <form action="{{ route('payment') }}" method="post">
+                        @csrf
+                        <input type="hidden" name="totalAmount" value="{{ $subtotal }}">
                         <button class="btn btn-primary w-100">Proceed to Checkout</button>
                     </form>
                 </div>
@@ -113,9 +90,39 @@
 @endsection
 
 @section('script')
+<div class="modal fade" id="deleteCartItem" tabindex="-1" role="dialog" aria-labelledby="Delete Cart Items" aria-modal="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="deleteCartItemTitle"><i class="fas fa-info-circle" style="color:red"></i> Confirm Delete</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <form id="deleteForm" method="post">
+                @csrf
+                @method('DELETE')
+                <div class="modal-body">
+                    <p>Are You Sure Want to Delete?</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button class="btn btn-danger">Delete</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
     <style>
         .btn {
             border-radius: 0px
         }
     </style>
+    <script>
+        $(document).on("click", ".delete-toggle", function() {
+            var id = $(this).data('id')
+            var action = 'cart/'+id
+            $('#deleteCartItem #deleteForm').attr("action", action)
+        })
+    </script>
 @endsection

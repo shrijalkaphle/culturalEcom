@@ -9,7 +9,6 @@
                         <ul>
                             <h5>Manage My Profile</h5>
                             <li id="profile"><a href="{{route('user.profile')}}" class="side-link ">My Profile</a></li>
-                            <li id="payment"><a href="" class="side-link">My Payment Options</a></li>
                             <h5 class="mt-3">Orders</h5>
                             <li id="orderhistory"><a href="{{ route('user.order') }}" class="side-link">Order History</a></li>
                         </ul>

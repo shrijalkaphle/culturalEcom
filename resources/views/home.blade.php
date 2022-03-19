@@ -18,10 +18,9 @@
         </div>
     </div>
     <div class="bg-text">
-        <h2>A4R Online Bookstore</h2>
-        <p>Dear readers, enjoy the collection of thousands of books, the more you read, the more you learn.</p>
         <div class="search-div">
-            <form action="search" method="post" id="search-form">
+            <h1>Culture at your DoorStep!!</h1>
+            <form action="search" method="post" id="search-form" class="mt-5">
                 <input type="search" name="search" id="search" class="search-input" placeholder="Search">
             </form>
         </div>
@@ -55,14 +54,16 @@
                         <h5 style="height:3em">{{$product->name}}</h5>
                         <p class="small text-muted text-uppercase mb-2">{{$product->nationality}}</p>
                         <h6 class="mb-3"><span class="text-danger mr-1">${{$product->cost}}</span></h6>
-                        <form action="" method="post">
-                            <input type="hidden" name="book_id" value="1">
-                        <button class="btn btn-primary btn-sm mr-1 mb-2" name="addCart">
+                        <form action="{{ route('cart.insert') }}" method="post">
+                            @csrf
+                            <input type="hidden" name="product_id" value="{{$product->id}}">
+                            <input type="hidden" name="qty" value="1">
+                            <button class="btn btn-primary btn-sm mr-1 mb-2">
                             <i class="fas fa-shopping-cart pr-2" aria-hidden="true"></i>Add to cart
-                        </button>
-                        <a type="button" class="btn btn-light btn-sm mr-1 mb-2" href="{{ route('view.product',$product->slug) }}">
-                            <i class="fas fa-info-circle pr-2" aria-hidden="true"></i>Details
-                        </a>
+                            </button>
+                            <a type="button" class="btn btn-light btn-sm mr-1 mb-2" href="{{ route('view.product',$product->slug) }}">
+                                <i class="fas fa-info-circle pr-2" aria-hidden="true"></i>Details
+                            </a>
                         </form>
                         
                     </div>
@@ -91,7 +92,6 @@
         .header {
             margin-top: -100px;
             height: 50vh;
-            overflow: hidden;
         }
         .splide__slide img {
             min-height: 50vh;
@@ -100,15 +100,18 @@
             object-position: center center;
         }
         .bg-text {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background: rgba(0, 0, 0, 0.3);
             color: whitesmoke;
             font-weight: bold;
             position: absolute;
-            top: 35%;
-            left: 50%;
-            transform: translate(-50%, -50%);
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
             z-index: 2;
-            width: 80%;
-            padding: 20px;
         }
         .flex-child {
             border-radius: 0;

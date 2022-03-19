@@ -5,18 +5,18 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class OrderHistory extends Model
+class Payment extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'payment_id',
-        'product_id',
-        'qty',
+        'user_id',
+        'paymentIntent_id',
+        'recept_url'
     ];
 
-    public function product()
+    public function items()
     {
-        return $this->belongsTo(Product::class);
+        return $this->hasMany(OrderHistory::class);
     }
 }
