@@ -28,6 +28,8 @@ Route::post('check_user', [AuthController::class, 'checkUser'])->name('user.logi
 
 Route::get('product/{slug}', [PageController::class, 'viewSingleProduct'])->name('view.product');
 
+Route::post('search', [PageController::class, 'search_product'])->name('search');
+
 Route::group(['middleware' => 'auth'], function() {
     Route::get('user/profile', [UserController::class, 'viewProfile'])->name('user.profile');
     Route::get('user/change-password', [UserController::class, 'changePassword'])->name('user.changepassword');

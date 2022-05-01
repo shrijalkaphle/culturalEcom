@@ -7,7 +7,7 @@
     <meta http-equiv="Content-Language" content="en">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title>@yield('title')</title>
-    <link rel="shortcut icon" href="/assets/img/admin-favicon.png" type="image/x-icon">
+    <link rel="shortcut icon" href="{{ assets('assets/favicon.png') }}" type="image/x-icon">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, shrink-to-fit=no" />
     <link href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp" rel="stylesheet">
     <link href="/main.css" rel="stylesheet"></head>

@@ -20,8 +20,9 @@
     <div class="bg-text">
         <div class="search-div">
             <h1>Culture at your DoorStep!!</h1>
-            <form action="search" method="post" id="search-form" class="mt-5">
-                <input type="search" name="search" id="search" class="search-input" placeholder="Search">
+            <form action="{{ route('search') }}" method="post" id="search-form" class="mt-5">
+                @csrf
+                <input type="search" name="search" id="search" class="search-input" placeholder="Search" value="@isset($query) {{$query}} @endisset">
             </form>
         </div>
         <div class="mt-5">

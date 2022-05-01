@@ -59,4 +59,20 @@ class PageController extends Controller
         return view('category',compact('sliders','categories','products','category'));
     }
 
+    public function search_product(Request $request)
+    {
+        $sliders = HeroSlider::all();
+        $categories = Category::all();
+
+        $query = $request->get('search');
+
+        $products = Product::where('name', 'like', '%' . $query . '%')
+                    ->orWhereHas('category', function($q) use ($query) {
+                        $q->where('name','like', '%' . $query . '%')
+                            ->orwhere('display','like', '%' . $query . '%');
+                    })->get();
+                    
+        return view('home',compact('sliders','categories','products','query'));
+    }
+
 }
