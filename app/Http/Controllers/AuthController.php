@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\RegisterValidationRequest;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -18,6 +19,7 @@ class AuthController extends Controller
             
         $input['role_id'] = 2;
         $input['password'] = Hash::make($input['password']);
+        $input['email_verified_at'] = Carbon::now();
         User::create($input);
 
         return redirect()->route('page.login')->with('success', 'Verify Emaill to continue');
