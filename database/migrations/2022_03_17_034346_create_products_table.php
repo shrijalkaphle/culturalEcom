@@ -22,7 +22,7 @@ return new class extends Migration
             $table->string('nationality');
             $table->integer('count');
             $table->float('cost');
-            $table->longText('description')->nullable()->default('text');
+            $table->longText('description')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });
